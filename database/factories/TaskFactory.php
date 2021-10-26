@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class TaskFactory extends Factory
 {
@@ -22,7 +23,8 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'card_id' => '1',
         ];
     }
 }
