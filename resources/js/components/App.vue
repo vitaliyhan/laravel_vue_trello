@@ -1,6 +1,10 @@
 <template>
     <div class="container">
-            <h1>Hi!</h1>
+       <router-link :to="{ name: 'home' }">Home</router-link>
+       <router-link :to="{ name: 'about' }">about</router-link>
+        <div>
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -9,7 +13,3 @@ export default {
     name: "App"
 }
 </script>
-
-<style scoped>
-
-</style>
