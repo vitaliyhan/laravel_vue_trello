@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const {version} = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +12,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js(['node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'resources/js/app.js'], 'public/js/app.js')
     .sass('resources/scss/app.scss', 'public/css')
-    .vue()
+    .vue().version()
     .sourceMaps();
