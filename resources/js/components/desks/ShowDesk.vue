@@ -1,14 +1,7 @@
 <template>
     <div class="container">
-        <h1>Доски</h1>
-        <div class="row">
-            <div class="col-lg-4" v-for="desk of desks">
-                <div class="card mt-3">
-                    <router-link :to="{name: 'showDesk', params: {deskId:desk.id}}" class="card-body">
-                        <h4 class="card-title">{{ desk.name }}</h4>
-                    </router-link>
-                </div>
-            </div>
+        <div class="form-group">
+            <input type="text" @blur="saveName" v-model="name" class="form-control">
         </div>
         <div class="alert alert-danger" role="alert" v-if="errored">
             Ошибка загрузки данных!
@@ -23,18 +16,37 @@
 
 <script>
 export default {
-    name: "Desks",
+    props: [
+        'deskId'
+    ],
     data() {
         return {
-            desks: [],
-            errored: false,
-            loading: true
+            name: null,
+            loading: true,
+            errored: false
+        }
+    },
+    methods: {
+        saveName() {
+            axios.put('/api/v1/desks/' + this.deskId, {
+                name: this.name,
+            })
+                .then(response => {
+
+                })
+                .catch(error => {
+                    this.errored = true
+                    console.log(error)
+                })
+                .finally(() => {
+                    this.loading = false
+                })
         }
     },
     mounted() {
-        axios.get('/api/v1/desks')
+        axios.get('/api/v1/desks/' + this.deskId)
             .then(response => {
-                this.desks = response.data.data;
+                this.name = response.data.data.name;
             })
             .catch(error => {
                 this.errored = true

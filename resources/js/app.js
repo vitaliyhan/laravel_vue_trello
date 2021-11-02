@@ -6,6 +6,7 @@ import VueRouter from "vue-router"
 import App from "./components/App"
 import Home from "./components/Home"
 import Desks from "./components/desks/Desks";
+import ShowDesk from "./components/desks/ShowDesk";
 
 const router = new VueRouter({
     mode: 'history',
@@ -18,6 +19,11 @@ const router = new VueRouter({
             path: '/desks',
             name: 'desks',
             component: Desks
+        },{
+            path: '/desks/:deskId',
+            name: 'showDesk',
+            component: ShowDesk,
+            props: true
         },
     ]
 })
