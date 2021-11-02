@@ -24,7 +24,15 @@ class DeskStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:2'
+            'name' => 'required|min:1|unique:desks,name'
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Доска с таким именем уже есть.'
+        ];
+
     }
 }
